@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Eventura</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-booking-btn">
+        <a href="index.html" class="btn-primary">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                <p>Welcome back! Please sign in to your account.</p>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div id="loginError" class="error-message" style="display: none;">
+                    Invalid email or password!
+                </div>
+                <button type="submit" class="btn-primary full-width" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p><a href="admin.html">Admin Login →</a></p>
+                
+
+
+
+
+
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Show loading
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            loginBtn.disabled = true;
+            
+            // Wait 1 second for realistic loading
+            setTimeout(() => {
+                
+                // 👑 1. ADMIN LOGIN CHECK
+                if (email === 'admin@eventura.com' && password === 'admin123') {
+                    // Save Admin Session
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        firstName: 'Eventura',
+                        lastName: 'Admin',
+                        email: 'admin@eventura.com',
+                        role: 'admin' // The bouncer looks for this!
+                    }));
+                    
+                    showSuccessMessage('Admin login successful! Redirecting to Dashboard...', 'admin.html');
+                    return; // Stop the script here
+                }
+                
+                // 👤 2. Check registered users
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                let user = users.find(u => u.email === email && u.password === password);
+                
+                // 👤 3. Demo login (if no registered users)
+                if (!user) {
+                    if (email === 'test@example.com' && password === 'password123') {
+                        user = {
+                            id: 1,
+                            firstName: 'Demo',
+                            lastName: 'User',
+                            email: email,
+                            phone: '9876543210',
+                            role: 'customer'
+                        };
+                    }
+                }
+                
+                if (user) {
+                    // Save current user
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    showSuccessMessage('Login successful! Redirecting to Booking...', 'booking.html');
+                    
+                } else {
+                    // Show error
+                    errorDiv.style.display = 'block';
+                    errorDiv.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Reset button
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+                    loginBtn.disabled = false;
+                }
+                
+            }, 1000);
+        });
+
+        // Helper function for the green success message
+        function showSuccessMessage(messageText, redirectUrl) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = messageText;
+            successDiv.style.cssText = `
+                background: #28a745;
+                color: white;
+                padding: 1rem;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+                text-align: center;
+                font-weight: bold;
+                box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+            `;
+            
+            const authCard = document.querySelector('.auth-card');
+            authCard.insertBefore(successDiv, document.querySelector('.auth-form'));
+            
+            // Redirect after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 1500);
+        }
+
+        // Auto-hide error on click
+        document.getElementById('loginError').addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

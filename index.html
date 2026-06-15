@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventura - Premium Events Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Booking Button -->
+    <div class="floating-booking-btn">
+        <a href="login.html" class="btn-primary">
+            <i class="fas fa-calendar-plus"></i> Book Event Now
+        </a>
+    </div>
+<section id="home" class="hero">
+    <div class="slider-container">
+        <div class="slider">
+
+            <div class="slide active">
+                <div class="slide-bg" style="background-image: url('images/aniivarsery.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Perfect Weddings</h1>
+                    <p>Create magical moments that last forever</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('images/anniversary_decor.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Corporate Events</h1>
+                    <p>Professional setups & branding</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('images/get-review-image6158.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Birthday Parties</h1>
+                    <p>Fun & themed celebrations</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="slider-arrow prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow next"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="slider-nav">
+            <span class="nav-dot active" onclick="currentSlide(1)"></span>
+            <span class="nav-dot" onclick="currentSlide(2)"></span>
+            <span class="nav-dot" onclick="currentSlide(3)"></span>
+        </div>
+
+    </div>
+</section>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2><i class="fas fa-magic"></i> Eventura</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#packages" class="nav-link">Packages</a></li>
+                    <li><a href="#locations" class="nav-link">Locations</a></li>
+                    <li><a href="login.html" class="btn-primary-nav">Login</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+   
+
+
+
+
+    
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Premium Services</h2>
+                <p>Transform your events with our world-class decoration expertise</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Wedding Decor</h3>
+                    <p>Exquisite stage decoration, floral arrangements, ambient lighting & mandap designs</p>
+                    <a href="login.html" class="service-link">Book Wedding Decor</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Birthday Parties</h3>
+                    <p>Themed decorations, cake setups, balloon arches, entertainment zones                          <br><br></p>
+                    <a href="login.html" class="service-link">Plan Birthday</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional conference setups, AV equipment, branding backdrops, catering</p>
+                    <a href="login.html" class="service-link">Book Corporate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Preview -->
+    <section id="packages" class="packages-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Perfect Package</h2>
+                <p>Select from our curated packages designed for every budget and occasion</p>
+                
+                <div class="package-tabs">
+                    <button class="package-tab active" data-category="birthday">Birthday Packages</button>
+                    <button class="package-tab" data-category="marriage">Marriage Packages</button>
+                    <button class="package-tab" data-category="corporate">Corporate Packages</button>
+                </div>
+            </div>
+
+            <div class="package-view active-view" id="view-birthday">
+                <div class="packages-grid">
+                    <div class="package-card silver animate">
+                        <div class="package-badge">BEST VALUE</div>
+                        <h3>Silver Package</h3>
+                        <div class="price">₹25,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ Basic floral decoration</li>
+                            <li>✓ 2 hours setup time</li>
+                            <li>✓ Standard lighting</li>
+                            <li>✓ Basic backdrop</li>
+                            <li>✓ Up to 100 guests</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Silver</a>
+                    </div>
+                    <div class="package-card gold popular animate">
+                        <div class="package-badge popular-badge">MOST POPULAR</div>
+                        <h3>Gold Package</h3>
+                        <div class="price">₹45,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ Premium floral arrangement</li>
+                            <li>✓ 4 hours setup time</li>
+                            <li>✓ LED lighting setup</li>
+                            <li>✓ Custom backdrop</li>
+                            <li>✓ Stage props included</li>
+                            <li>✓ Up to 250 guests</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Gold</a>
+                    </div>
+                    <div class="package-card platinum animate">
+                        <div class="package-badge">PREMIUM</div>
+                        <h3>Platinum Package</h3>
+                        <div class="price">₹75,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ Luxury floral arrangements</li>
+                            <li>✓ Full day setup</li>
+                            <li>✓ Laser lighting & projectors</li>
+                            <li>✓ 3D backdrop design</li>
+                            <li>✓ DJ console & sound system</li>
+                            <li>✓ Unlimited guests</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Platinum</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-view" id="view-marriage" style="display: none;">
+                <div class="packages-grid">
+                    <div class="package-card silver animate">
+                        <div class="package-badge">ELEGANT</div>
+                        <h3>Silver Package</h3>
+                        <div class="price">₹2,50,000 <span>/wedding</span></div>
+                        <ul>
+                            <li>✓ Beautiful floral entrance</li>
+                            <li>✓ Standard stage decoration</li>
+                            <li>✓ Warm ambient lighting</li>
+                            <li>✓ Elegant seating for 200 guests</li>
+                            <li>✓ Traditional Mandap setup</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Silver</a>
+                    </div>
+                    <div class="package-card gold popular animate">
+                        <div class="package-badge popular-badge">MOST POPULAR</div>
+                        <h3>Gold Package</h3>
+                        <div class="price">₹3,50,000 <span>/wedding</span></div>
+                        <ul>
+                            <li>✓ Premium imported flowers</li>
+                            <li>✓ Grand stage with LED screens</li>
+                            <li>✓ Intelligent lighting & DJ setup</li>
+                            <li>✓ Premium seating for 500 guests</li>
+                            <li>✓ Designer Mandap & photo booths</li>
+                            <li>✓ Cold pyros for couple entry</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Gold</a>
+                    </div>
+                    <div class="package-card platinum animate">
+                        <div class="package-badge">DIAMOND LUXURY</div>
+                        <h3>Diamond Package</h3>
+                        <div class="price">₹5,00,000 <span>/wedding</span></div>
+                        <ul>
+                            <li>✓ Exotic luxury floral ceiling</li>
+                            <li>✓ 3D theme stage transformation</li>
+                            <li>✓ Laser, drone & fireworks show</li>
+                            <li>✓ Luxury seating (Unlimited guests)</li>
+                            <li>✓ Royal Mandap & premium catering decor</li>
+                            <li>✓ Dedicated event manager</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Diamond</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-view" id="view-corporate" style="display: none;">
+                <div class="packages-grid">
+                    <div class="package-card silver animate">
+                        <div class="package-badge">STANDARD</div>
+                        <h3>Standard Package</h3>
+                        <div class="price">₹80,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ Professional flex backdrop</li>
+                            <li>✓ Basic AV & PA sound system</li>
+                            <li>✓ Stage & podium setup</li>
+                            <li>✓ Standard corporate branding</li>
+                            <li>✓ Setup for up to 100 pax</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Standard</a>
+                    </div>
+                    <div class="package-card gold popular animate">
+                        <div class="package-badge popular-badge">PREMIUM</div>
+                        <h3>Premium Package</h3>
+                        <div class="price">₹1,50,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ LED video wall backdrop</li>
+                            <li>✓ Premium line-array sound & mics</li>
+                            <li>✓ Custom lighting & stage design</li>
+                            <li>✓ Brand colored ambient lighting</li>
+                            <li>✓ Setup for up to 300 pax</li>
+                            <li>✓ Full day technical support</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Premium</a>
+                    </div>
+                    <div class="package-card platinum animate">
+                        <div class="package-badge">ELITE</div>
+                        <h3>Elite Package</h3>
+                        <div class="price">₹3,00,000 <span>/event</span></div>
+                        <ul>
+                            <li>✓ Multiple curved LED screens</li>
+                            <li>✓ Concert-grade AV & trussing</li>
+                            <li>✓ 3D projection mapping branding</li>
+                            <li>✓ Gala dinner luxury setup</li>
+                            <li>✓ Setup for 500+ pax</li>
+                            <li>✓ End-to-end event management</li>
+                        </ul>
+                        <a href="login.html" class="package-cta">Choose Elite</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Locations Preview -->
+    <section id="locations" class="locations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Service Available In</h2>
+                <p>Premium decoration services across Karnataka's prime locations</p>
+            </div>
+            <div class="locations-grid">
+                
+                <div class="location-card bangalore">
+                    <div class="location-image">
+                        <img src="images/banglore.jpg" alt="Bangalore">
+                        <div class="location-overlay">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    <div class="location-content">
+                        <h3>Bangalore</h3>
+                        <p>15+ Premium Venues</p>
+                    </div>
+                </div>               
+                <div class="location-card mysore">
+                    <div class="location-image">
+                        <img src="images/mysore-palace.jpg" alt="Mysore">
+                        <div class="location-overlay">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    <div class="location-content">
+                        <h3>Mysore</h3>
+                        <p>12+ Luxury Venues</p>
+                    </div>
+                </div>
+                <div class="location-card hubli">
+                    <div class="location-image">
+                        <img src="images/dharwad.jpg" alt="Hubli">
+                        <div class="location-overlay">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    <div class="location-content">
+                        <h3>Hubli</h3>
+                        <p>10+ Banquet Halls</p>
+                    </div>
+                </div>
+                <div class="location-card belagavi">
+                    <div class="location-image">
+                        <img src="images/belagavi.jpg" alt="Belagavi">
+                        <div class="location-overlay">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    <div class="location-content">
+                        <h3>Belagavi</h3>
+                        <p>8+ Premium Venues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-magic"></i> Eventura</h3>
+                    <p>Premium event decoration services across Karnataka. Making every moment magical.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#locations">Locations</a></li>
+                        <li><a href="login.html">Book Now</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@eventura.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karnataka, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Eventura. All rights reserved. | Premium Event Decoration Services</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

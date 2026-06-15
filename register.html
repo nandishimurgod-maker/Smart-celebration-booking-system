@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventura - Register</title>
+    <!-- Add your CSS here -->
+    <style>
+        /* Basic register form styling */
+        .register-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2 style="text-align: center; margin-bottom: 30px;">Create Account</h2>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text"
+                       id="firstName"
+                       name="firstName"
+                       pattern="[A-Za-z ]+"
+                       title="Only alphabets are allowed"
+                       required>
+                <div id="firstNameError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text"
+                       id="lastName"
+                       name="lastName"
+                       pattern="[A-Za-z ]+"
+                       title="Only alphabets are allowed"
+                       required>
+                <div id="lastNameError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" required>
+                <div id="phoneError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" required>
+                <div id="emailError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" minlength="6" required>
+                <div id="passwordError" class="error"></div>
+            </div>
+            
+            <button type="submit">Register & Continue</button>
+        </form>
+        
+        <div class="link">
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        console.log('Register script loaded');
+        
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - initializing register form');
+            
+            const form = document.getElementById('registerForm');
+            if (!form) {
+                console.error('Register form not found!');
+                return;
+            }
+            
+            form.addEventListener('submit', handleRegister);
+            
+            // Clear previous errors on input
+            ['firstName', 'lastName', 'phone', 'email', 'password'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', () => clearError(id));
+                }
+            });
+        });
+        
+        function clearError(fieldId) {
+            const errorEl = document.getElementById(fieldId + 'Error');
+            if (errorEl) {
+                errorEl.textContent = '';
+            }
+        }
+        
+        function showError(fieldId, message) {
+            clearError(fieldId);
+            const errorEl = document.getElementById(fieldId + 'Error');
+            if (errorEl) {
+                errorEl.textContent = message;
+            }
+        }
+        
+        function validateForm(userData) {
+            // Reset all errors
+            ['firstName', 'lastName', 'phone', 'email', 'password'].forEach(id => clearError(id));
+            
+            let isValid = true;
+            
+            // Name validation
+            if (!userData.firstName || userData.firstName.length < 2) {
+                showError('firstName', 'First name must be at least 2 characters');
+                isValid = false;
+            }
+            
+            if (!userData.lastName || userData.lastName.length < 2) {
+                showError('lastName', 'Last name must be at least 2 characters');
+                isValid = false;
+            }
+            
+            // Phone validation (Indian format)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(userData.phone)) {
+                showError('phone', 'Enter valid 10-digit phone number (starts with 6-9)');
+                isValid = false;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(userData.email)) {
+                showError('email', 'Enter valid email address');
+                isValid = false;
+            }
+            
+            // Password validation
+            if (userData.password.length < 6) {
+                showError('password', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function handleRegister(e) {
+            e.preventDefault();
+            console.log('Register form submitted');
+            
+            try {
+                // Collect form data
+                const user = {
+                    id: Date.now(),
+                    firstName: document.getElementById('firstName').value.trim(),
+                    lastName: document.getElementById('lastName').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim().toLowerCase(),
+                    password: document.getElementById('password').value // Don't trim password
+                };
+                
+                console.log('User data:', user);
+                
+                // Validate form
+                if (!validateForm(user)) {
+                    console.log('Validation failed');
+                    return;
+                }
+                
+                // Check if email already exists
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                console.log('Existing users count:', users.length);
+                
+                if (users.find(u => u.email === user.email)) {
+                    showError('email', 'Email already registered! Please login.');
+                    return;
+                }
+                
+                // Save user
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                console.log('Registration successful');
+                alert('Registration successful! Redirecting to booking...');
+                window.location.href = 'booking.html';
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Eventura</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-magic"></i>
+                <span>Eventura Admin</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#bookings" class="nav-item" data-section="bookings">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+                <span class="badge" id="pendingCount">0</span>
+            </a>
+            
+            </a>
+            
+            </a>
+            <a href="#customers" class="nav-item" data-section="customers">
+                <i class="fas fa-users"></i>
+                <span>Customers</span>
+            </a>
+            
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search bookings...">
+                </div>
+                <div class="user-profile" onclick="adminLogout()" style="cursor: pointer;" title="Click to Logout">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Admin">
+                    <span>Admin Logout</span>
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+            </div> </header>
+
+        <section id="dashboard" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalBookings">0</h3>
+                        <p>Total Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalRevenue">₹0</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pendingBookings">0</h3>
+                        <p>Pending Approval</p>
+                    </div>
+                </div>
+                <div class="stat-card secondary">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completedBookings">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <h3>Recent Bookings</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="recent-bookings">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Event</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentBookingsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bookings" class="content-section">
+            <div class="page-header">
+                <h2>All Bookings</h2>
+                <div class="page-actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-file-export"></i> Export CSV
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Event Type</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Package</th>
+                            <th>Guests</th>
+                            <th>Notes</th> 
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="venues" class="content-section">
+            <div class="page-header">
+                <h2>Venue Management</h2>
+            </div>
+            <div class="cards-grid" id="venuesGrid"></div>
+        </section>
+
+        <section id="packages" class="content-section">
+            <div class="page-header">
+                <h2>Package Management</h2>
+            </div>
+            <div class="cards-grid" id="packagesGrid"></div>
+        </section>
+
+        <section id="customers" class="content-section">
+            <div class="page-header">
+                <h2>Customer Management</h2>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Total Events Booked</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customersTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="reports" class="content-section">
+            <div class="page-header">
+                <h2>Reports & Analytics</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="padding: 2rem;">
+                    <h3>Revenue Reports</h3>
+                    <p>Generate monthly/weekly reports.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
